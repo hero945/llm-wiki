@@ -13,12 +13,12 @@
             "state": {
               "type": "split-diff-view",
               "state": {
-                "aFile": ".obsidian/plugins/obsidian-git/data.json",
-                "bFile": ".obsidian/plugins/obsidian-git/data.json",
+                "aFile": ".obsidian/workspace.json",
+                "bFile": ".obsidian/workspace.json",
                 "aRef": ""
               },
               "icon": "diff",
-              "title": "Diff: data.json  (Working Tree)"
+              "title": "Diff: workspace.json  (Working Tree)"
             }
           }
         ],
@@ -151,8 +151,8 @@
             "state": {
               "type": "copilot-chat-view",
               "state": {},
-              "icon": "lucide-ghost",
-              "title": "copilot-chat-view"
+              "icon": "message-square",
+              "title": "Copilot"
             }
           },
           {
@@ -199,7 +199,7 @@
             }
           }
         ],
-        "currentTab": 7
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -220,8 +220,9 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "3f2abaf661d1c0e7",
+  "active": "66c621708ecabb04",
   "lastOpenFiles": [
+    "ai学习/Obsidian 使用本地 Ollama 模型经验.md",
     "python/Python 运算符  菜鸟教程.md",
     "copilot/copilot-conversations/Ending_Conversation_Now@20260712_215918.md",
     "copilot/copilot-conversations/Chat_vs_Value_QA_Differences@20260712_215122.md",
@@ -253,7 +254,6 @@
     "华东医药入职学习/06-AI可落地场景.md",
     "华东医药入职学习/07-数仓指标候选清单.md",
     "华东医药入职学习/08-90天行动计划.md",
-    "华东医药入职学习/09-早期研发方案与报告决策流程.md",
     "华东医药入职学习",
     "前端学习",
     "copilot/copilot-custom-prompts",
