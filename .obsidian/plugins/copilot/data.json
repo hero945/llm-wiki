@@ -331,7 +331,8 @@
       "isEmbeddingModel": false,
       "capabilities": [],
       "stream": false,
-      "displayName": "myllm"
+      "displayName": "myllm",
+      "maxTokens": 35700
     }
   ],
   "activeEmbeddingModels": [
