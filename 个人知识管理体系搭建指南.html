@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>个人知识管理体系搭建指南</title>
+<style>
+  :root {
+    --bg: #fbfaf7;
+    --surface: #ffffff;
+    --ink: #2a2a28;
+    --ink-soft: #5c5a55;
+    --line: #e7e3da;
+    --accent: #c2410c;
+    --accent-soft: #fff1e8;
+    --blue: #1d4ed8;
+    --green: #15803d;
+    --tag: #f0ede6;
+    --code-bg: #f4f1ea;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16161a;
+      --surface: #1f1f25;
+      --ink: #ece9e3;
+      --ink-soft: #a8a39a;
+      --line: #33333c;
+      --accent: #fb923c;
+      --accent-soft: #2a1c12;
+      --blue: #60a5fa;
+      --green: #4ade80;
+      --tag: #2a2a33;
+      --code-bg: #26262e;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 22px 100px; }
+  header.hero {
+    background: linear-gradient(135deg, var(--accent), #7c2d12);
+    color: #fff;
+    padding: 64px 22px 54px;
+    margin-bottom: 40px;
+  }
+  @media (prefers-color-scheme: dark) {
+    header.hero { background: linear-gradient(135deg, #9a3412, #7c2d12); }
+  }
+  header.hero .inner { max-width: 880px; margin: 0 auto; }
+  header.hero .kicker { letter-spacing: 3px; font-size: 13px; opacity: .85; text-transform: uppercase; }
+  header.hero h1 { font-size: 38px; line-height: 1.25; margin: 14px 0 12px; font-weight: 800; }
+  header.hero p { font-size: 16px; opacity: .92; max-width: 640px; margin: 0; }
+  .meta { margin-top: 22px; font-size: 13px; opacity: .8; }
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 26px;
+    margin-bottom: 44px;
+  }
+  .toc h2 { margin: 0 0 12px; font-size: 16px; }
+  .toc ol { margin: 0; padding-left: 20px; }
+  .toc li { margin: 6px 0; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  section { margin-bottom: 52px; }
+  h2.section-title {
+    font-size: 27px;
+    font-weight: 800;
+    border-left: 5px solid var(--accent);
+    padding-left: 14px;
+    margin: 0 0 18px;
+    line-height: 1.3;
+  }
+  h3 { font-size: 20px; margin: 32px 0 12px; font-weight: 700; }
+  h4 { font-size: 17px; margin: 24px 0 8px; font-weight: 700; color: var(--accent); }
+  p { margin: 12px 0; }
+  strong { color: var(--ink); }
+  ul, ol { padding-left: 22px; }
+  li { margin: 7px 0; }
+  .lead { font-size: 17px; color: var(--ink-soft); }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 26px;
+    margin: 18px 0;
+  }
+  .card.accent { background: var(--accent-soft); border-color: transparent; }
+  .callout {
+    border-left: 4px solid var(--blue);
+    background: var(--surface);
+    padding: 14px 20px;
+    border-radius: 0 10px 10px 0;
+    margin: 18px 0;
+    font-size: 15px;
+  }
+  .callout.warn { border-color: var(--accent); }
+  .callout.tip { border-color: var(--green); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    font-size: 14.5px;
+    background: var(--surface);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px var(--line);
+  }
+  th, td { padding: 11px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+  th { background: var(--tag); font-weight: 700; color: var(--ink); }
+  tr:last-child td { border-bottom: none; }
+  td code, p code, li code { background: var(--code-bg); padding: 2px 6px; border-radius: 5px; font-size: 13.5px; }
+  .step {
+    display: flex;
+    gap: 14px;
+    margin: 14px 0;
+    align-items: flex-start;
+  }
+  .step .num {
+    flex: 0 0 30px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+  }
+  .step .body { flex: 1; }
+  .step .body strong { display: block; margin-bottom: 2px; }
+  .tagpill {
+    display: inline-block;
+    background: var(--tag);
+    border-radius: 6px;
+    padding: 2px 9px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin: 2px 4px 2px 0;
+  }
+  .flow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin: 16px 0;
+  }
+  .flow .box {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .flow .arrow { color: var(--accent); font-weight: 700; font-size: 18px; }
+  .tree { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13.5px; background: var(--code-bg); padding: 18px 22px; border-radius: 12px; line-height: 1.7; overflow-x: auto; }
+  .tree .cm { color: var(--ink-soft); }
+  .tree .hl { color: var(--accent); font-weight: 700; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 640px) { .grid2 { grid-template-columns: 1fr; } }
+  .kbd { font-family: ui-monospace, monospace; background: var(--code-bg); padding: 1px 6px; border-radius: 5px; }
+  footer { text-align: center; color: var(--ink-soft); font-size: 13px; margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--line); }
+  .checklist li { list-style: none; margin-left: -20px; }
+  .checklist li::before { content: "☐ "; color: var(--accent); }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="inner">
+    <div class="kicker">Knowledge Management System</div>
+    <h1>个人知识管理体系搭建指南</h1>
+    <p>从「信息囤积者」到「知识创造者」：一套可落地、可执行的系统化知识管理方法。</p>
+    <div class="meta">适用人群 · 知识工作者 / 研究者 / 创作者 / 终身学习者　|　阅读时长 · 约 18 分钟　|　落地周期 · 30 天</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="toc">
+    <h2>目录</h2>
+    <ol>
+      <li><a href="#intro">为什么你需要一套体系，而不是又一个工具</a></li>
+      <li><a href="#l1">知识管理的三层架构</a> — 输入层 / 处理层 / 输出层</li>
+      <li><a href="#para">PARA 分类法实操指南</a></li>
+      <li><a href="#review">每周知识复盘模板</a></li>
+      <li><a href="#tools">常见知识管理工具对比表</a></li>
+      <li><a href="#plan">30 天知识管理养成计划</a></li>
+    </ol>
+  </div>
+
+  <section id="intro">
+    <h2 class="section-title">为什么你需要一套体系，而不是又一个工具</h2>
+    <p class="lead">大多数人并非「没有方法」，而是方法停留在收藏这一步：收藏夹里躺着上千篇文章，笔记 App 里记了几百条碎片，真要用时却像进了没有索引的仓库——东西都在，就是找不到。</p>
+    <p>问题从来不在工具。Notion、Obsidian、语雀、Evernote 都能存东西，但没有任何一个工具会替你「判断什么是重要的」「把零散信息连成网络」「把笔记变成产出」。这些才是体系要做的事。</p>
+    <div class="card accent">
+      <p style="margin:0"><strong>一个核心认知：</strong>知识的价值不在「被收藏」，而在「被连接」与「被产出」。收藏是负债（需要维护），创造才是资产（持续增值）。本指南的目标，就是帮你把知识流从「进得来、出不去」的死水，改成「输入→处理→输出→反哺」的活水飞轮。</p>
+    </div>
+    <p>下面五部分可独立使用，但建议按顺序落地：先搭架构（第 1 节）和分类骨架（第 2 节），再用复盘（第 3 节）和工具（第 4 节）固化习惯，最后靠 30 天计划（第 5 节）把它们变成肌肉记忆。</p>
+  </section>
+
+  <section id="l1">
+    <h2 class="section-title">一、知识管理的三层架构</h2>
+    <p>把知识管理想象成一条流水线：<strong>输入层</strong>负责「只让对的信息进来」，<strong>处理层</strong>负责「把信息变成自己的理解」，<strong>输出层</strong>负责「把理解变成成果并反哺输入」。三层首尾相接，形成一个持续转动的飞轮。</p>
+
+    <div class="flow">
+      <span class="box">📥 输入层</span><span class="arrow">→</span>
+      <span class="box">🛠 处理层</span><span class="arrow">→</span>
+      <span class="box">🚀 输出层</span><span class="arrow">↺</span>
+      <span class="box">反哺输入</span>
+    </div>
+
+    <h3>1.1 输入层：信息筛选漏斗</h3>
+    <p><strong>痛点：</strong>信息过载，入口没有标准，什么都往里收，最后被淹没。<br>
+    <strong>解法：</strong>在信息真正进入你的系统之前，用四层漏斗逐道筛掉噪音，只放行高价值信息。</p>
+
+    <div class="card">
+      <h4>四层筛选漏斗（自上而下，逐层收紧）</h4>
+      <div class="step"><div class="num">1</div><div class="body"><strong>来源可信度层</strong>——只从你信任、且持续产出质量的来源获取（权威媒体、领域专家、一手论文、你验证过的博主）。不信任的来源，连点开都省了。</div></div>
+      <div class="step"><div class="num">2</div><div class="body"><strong>相关性层</strong>——这条信息是否与你当前的目标、项目或长期领域有关？无关再精彩也是噪音。</div></div>
+      <div class="step"><div class="num">3</div><div class="body"><strong>可操作性层</strong>——读完后能否转化为一条笔记、一个行动、一个决策？纯消遣且无沉淀价值的，读完即弃。</div></div>
+      <div class="step"><div class="num">4</div><div class="body"><strong>时效性层</strong>——是「现在就要用」还是「以后可能用」？现在要用的进处理层，以后可能用的进 Resources 归档，避免占用注意力。</div></div>
+    </div>
+
+    <h4>具体可操作步骤</h4>
+    <ol>
+      <li><strong>建立「信息源白名单」。</strong>花 30 分钟列出你最常消费的 10–15 个高质量来源（RSS、 Newsletter、播客、账号），其余默认不主动关注。每月清理一次不再产出价值的来源。</li>
+      <li><strong>设定每日收藏配额。</strong>例如「每天最多把 3 条信息放进收件箱」。配额逼你做取舍，从源头遏制囤积。</li>
+      <li><strong>用「30 秒判断法」决定去向：</strong>每遇到一条想收的信息，问自己——① 它属于哪个项目/领域？② 一周内我会处理它吗？③ 不收会损失什么？三问过不了，直接跳过。</li>
+      <li><strong>统一入口。</strong>所有想留的信息先丢进<strong>单一收件箱（Inbox）</strong>，不在微信/浏览器/备忘录里分散存。每天固定一个时段清空收件箱。</li>
+      <li><strong>定期「订阅瘦身」。</strong>每月末问一次：这个来源上个月给我带来过价值吗？没有就退订。信息源也需要断舍离。</li>
+    </ol>
+
+    <div class="callout tip">
+      <strong>可立即使用的筛选标准清单（收藏前逐条对照）：</strong>
+      <ul class="checklist" style="margin-top:8px">
+        <li>来源是我信任的且之前产出过价值？</li>
+        <li>与我的项目 / 领域 / 目标相关？</li>
+        <li>读完后我能量化地「用上它」？</li>
+        <li>不收藏的话，我真的会损失什么？</li>
+        <li>我今天的收藏配额还有余额吗？</li>
+      </ul>
+    </div>
+
+    <h3>1.2 处理层：渐进式笔记法</h3>
+    <p><strong>痛点：</strong>笔记要么全是原文搬运（没消化），要么零散无关联（用不上）。<br>
+    <strong>解法：</strong>让每条笔记沿「原始摘录 → 转述提炼 → 关联思考」逐层深化，越往后越「是你的」，而非作者的。</p>
+
+    <div class="flow">
+      <span class="box">① 原始摘录</span><span class="arrow">→</span>
+      <span class="box">② 转述提炼</span><span class="arrow">→</span>
+      <span class="box">③ 关联思考</span>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h4>① 原始摘录（ fleeting / clip ）</h4>
+        <p style="font-size:14px">原封不动保存关键信息 + 出处链接 + 时间戳。<strong>不加工、不评论</strong>。目的只是「先留住」，避免日后找不到原文。</p>
+        <p style="font-size:13px;color:var(--ink-soft)">例：「拖延的本质不是懒，而是情绪调节失败。」——《解忧作文》P.82</p>
+      </div>
+      <div class="card">
+        <h4>② 转述提炼（ literature / processing ）</h4>
+        <p style="font-size:14px"><strong>用自己的话重写</strong>核心观点，提取 1–3 个可迁移的结论。检验标准：合上原文，你能复述吗？</p>
+        <p style="font-size:13px;color:var(--ink-soft)">例：「我总把难事拖到最后一刻，其实不是不想做，而是害怕做不好带来的焦虑——这不是纪律问题，是情绪问题。」</p>
+      </div>
+    </div>
+    <div class="card accent">
+      <h4>③ 关联思考（ permanent / insight ）</h4>
+      <p style="font-size:14px;margin-top:0">把提炼出的观点<strong>连接到你已有的知识网络</strong>：它印证 / 反驳 / 补充了哪条旧笔记？能解决哪个真实问题？形成一条「原子化」笔记（一条笔记只讲一个想法），并打上双向链接。</p>
+      <p style="font-size:13px;color:var(--ink-soft);margin-bottom:0">例：「→ 关联到 [[情绪优先于理性]]；→ 反驳了 [[靠意志力克服拖延]]；→ 可用于 [[周报压力管理方案]]。」</p>
+    </div>
+
+    <h4>一条笔记的 SOP（标准操作流程）</h4>
+    <ol>
+      <li>从收件箱取出一条信息，先判断属于哪一层（多数直接进 ②）。</li>
+      <li>写 ② 转述：用自己的话，≤ 3 句话，逼自己「翻译」一次。</li>
+      <li>写 ③ 关联：至少主动链接 1 条已有笔记，或标注「待关联」。</li>
+      <li>给笔记一个「命题式标题」（如「拖延是情绪问题，不是纪律问题」），方便日后检索。</li>
+      <li>归入 PARA 对应位置（见第二节），删除收件箱里的原始条目。</li>
+    </ol>
+    <div class="callout warn">
+      <strong>「三问」质量检查：</strong>一条永久笔记写完，问自己——① 这句话是我自己的话吗？② 它和我的其他知识连上了吗？③ 半年后我看到它，能立刻用上吗？三问不过，退回上一层重做。
+    </div>
+
+    <h3>1.3 输出层：知识产出飞轮</h3>
+    <p><strong>痛点：</strong>笔记越积越多，却从不往外拿，变成「数字仓鼠」。<br>
+    <strong>解法：</strong>把笔记当作素材库，主动组合成成果；成果发布后又成为新的高质量输入，飞轮由此转起来。</p>
+
+    <div class="flow">
+      <span class="box">笔记库</span><span class="arrow">→</span>
+      <span class="box">组合拼图</span><span class="arrow">→</span>
+      <span class="box">成果产出</span><span class="arrow">→</span>
+      <span class="box">发布+复盘</span><span class="arrow">↺</span>
+      <span class="box">反哺输入</span>
+    </div>
+
+    <h4>具体可操作步骤</h4>
+    <ol>
+      <li><strong>设定产出节奏。</strong>如「每两周产出 1 篇短文 / 1 份方案 / 1 次内部分享」，写进日历，当作和会议同等重要的承诺。</li>
+      <li><strong>用「笔记拼图法」组装。</strong>要写某主题时，搜索相关永久笔记，把它们按逻辑顺序拖成大纲，再连缀成文——你不是在「从零写」，而是在「整理已有思考」。极大降低启动门槛。</li>
+      <li><strong>建立产出模板。</strong>固定几种模板（文章模板、方案模板、决策模板），每次只填内容不重排结构。</li>
+      <li><strong>发布 + 复盘。</strong>产出后收集反馈，把「被质疑的点」「新冒出的问题」作为新信息回到输入层，飞轮闭环。</li>
+      <li><strong>让产出反哺。</strong>你写的文章、做的方案，本身是高浓度、已验证的输入，优先回链到知识库，比收藏来的信息更可靠。</li>
+    </ol>
+    <div class="callout tip">
+      <strong>产出形式不限体裁：</strong>一篇朋友圈长文、一份给同事的方案、一个决策记录、一次团队分享、一张知识卡片——只要「把内部理解变成外部成果」，飞轮就在转。重点是<strong>频率</strong>，不是篇幅。
+    </div>
+  </section>
+
+  <section id="para">
+    <h2 class="section-title">二、PARA 分类法实操指南</h2>
+    <p>PARA 由 Tiago Forte 提出，按「<strong>可操作性</strong>」而非「主题」来组织知识。它解决一个核心问题：同样一条笔记，在「正在做的项目」里是行动依据，在「归档」里只是参考资料——放错地方，价值归零。</p>
+
+    <table>
+      <thead>
+        <tr><th>类别</th><th>定义边界</th><th>时间属性</th><th>命名规范</th><th>迁移规则</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Projects<br>项目</strong></td>
+          <td>有明确目标 + 截止日期的具体任务。完成后即结束。</td>
+          <td>短期、有明确终点</td>
+          <td>结果导向，可加日期前缀<br><code>2026Q3-产品发布会</code></td>
+          <td>完成 → 沉淀进 Areas / Archive；终止 → Archive</td>
+        </tr>
+        <tr>
+          <td><strong>Areas<br>领域</strong></td>
+          <td>需长期持续维护、无截止日期的责任范畴（标准、健康、职业）。</td>
+          <td>长期、持续进行</td>
+          <td>名词即可<br><code>健康管理</code> <code>职业发展</code></td>
+          <td>长期不活跃 → Archive；被项目验证 → 更新准则</td>
+        </tr>
+        <tr>
+          <td><strong>Resources<br>资源</strong></td>
+          <td>未来可能有用的主题资料库，尚不归属具体项目/领域。</td>
+          <td>待用、按需取用</td>
+          <td>主题词，可加 <code>R-</code> 前缀<br><code>R-投资理财</code></td>
+          <td>被某项目需要 → 复制到 Projects；长期不用 → Archive</td>
+        </tr>
+        <tr>
+          <td><strong>Archives<br>归档</strong></td>
+          <td>已完成 / 暂停的项目，及不再活跃的领域与资源。</td>
+          <td>休眠、备查</td>
+          <td>原路径 + <code>-归档-YYYYMM</code><br><code>2026Q3-产品发布会-归档-202609</code></td>
+          <td>重新激活 → 移回 P / A / R</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>分类的黄金判断句</h4>
+    <ul>
+      <li>有截止日期和明确交付物？→ <strong>Projects</strong></li>
+      <li>没有终点但要一直负责？→ <strong>Areas</strong></li>
+      <li>现在用不上，但将来可能用？→ <strong>Resources</strong></li>
+      <li>上面三类里已经「死掉」的？→ <strong>Archives</strong></li>
+    </ul>
+
+    <h4>具体分类示例（一位产品经理的知识库）</h4>
+    <div class="tree">
+📁 <span class="hl">00-Inbox</span> <span class="cm"># 单一收件箱，每日清空</span><br>
+📁 <span class="hl">01-Projects</span> <span class="cm"># 项目</span><br>
+│　├─ 2026Q3-新版引导流程改版<br>
+│　├─ 2026Q3-竞品分析报告<br>
+│　└─ 用户访谈-7月批次<br>
+📁 <span class="hl">02-Areas</span> <span class="cm"># 领域</span><br>
+│　├─ 职业发展<br>
+│　├─ 团队管理<br>
+│　└─ 健康管理<br>
+📁 <span class="hl">03-Resources</span> <span class="cm"># 资源</span><br>
+│　├─ R-增长黑客<br>
+│　├─ R-数据分析方法<br>
+│　└─ R-访谈技巧<br>
+📁 <span class="hl">04-Archives</span> <span class="cm"># 归档</span><br>
+　　├─ 2026Q2-老版引导流程-归档-202606<br>
+　　└─ R-已弃用AB测试框架-归档-202604
+    </div>
+    <div class="callout">
+      <strong>迁移规则速记：</strong>PARA 的关键不是「分一次类」，而是<strong>让笔记随生命周期流动</strong>。每周复盘的「回顾与整理项」里，专门检查：哪些 Project 该归档？哪些 Resource 被项目调用了该复制过去？哪些 Area 长期没动该休眠？体系活起来的标志，就是你的文件在四个箱子之间频繁搬家。
+    </div>
+  </section>
+
+  <section id="review">
+    <h2 class="section-title">三、每周知识复盘模板</h2>
+    <p>知识管理最大的敌人是「建完就忘」。每周花 20–30 分钟做复盘，是让体系持续运转的最低成本保障。直接复制下表使用（也可做成你笔记软件里的一个周模板）。</p>
+
+    <table>
+      <thead>
+        <tr><th style="width:22%">字段</th><th>说明 / 填写指引</th><th style="width:34%">示例</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>本周新增笔记数</strong></td><td>收件箱进了多少、实际处理了多少、剩余积压多少。关注「处理率」而非「收藏率」。</td><td>新增 14 条，处理 11 条，积压 3 条</td></tr>
+        <tr><td><strong>回顾与整理项</strong></td><td>本周清理了什么？归类/迁移/删除的动作。对应 PARA 迁移检查。</td><td>将「R-增长黑客」中 3 条移入「竞品分析报告」项目；归档 1 个旧项目</td></tr>
+        <tr><td><strong>知识关联发现</strong></td><td>本周发现了哪些笔记间的新联系？形成了什么新洞见？这是体系「长脑子」的地方。</td><td>发现「拖延」与「会议低效」都指向「情绪调节」，新建 [[情绪优先于理性]] 主笔记</td></tr>
+        <tr><td><strong>输出成果</strong></td><td>本周产生了哪些外部成果（文章/方案/分享/决策）。没有就写「无」，并反思原因。</td><td>产出 1 篇内部分享《如何用访谈技巧做需求挖掘》</td></tr>
+        <tr><td><strong>下周重点关注</strong></td><td>下周要推进的项目、要补的领域、要启动的产出。越具体越好。</td><td>完成竞品报告初稿；启动「职业发展」领域年度复盘</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout warn">
+      <strong>复盘铁律：</strong>如果连续两周「输出成果」都是「无」，说明你卡在输入/处理层了——立刻把配额砍半，强制腾出时间做产出。飞轮不转，囤再多也是负债。
+    </div>
+  </section>
+
+  <section id="tools">
+    <h2 class="section-title">四、常见知识管理工具对比表</h2>
+    <p>工具是容器，不是方法。下面从 5 个维度对比 6 款主流工具，帮你按「使用场景」选，而不是追新。</p>
+
+    <table>
+      <thead>
+        <tr><th>工具</th><th>支持格式</th><th>双向链接</th><th>检索能力</th><th>学习曲线</th><th>适用场景</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Obsidian</strong></td><td>纯本地 Markdown，插件极多</td><td>原生强，图谱可视化</td><td>全文+标签+图谱，强</td><td>中（插件需调）</td><td>个人知识网络、长期第二大脑</td></tr>
+        <tr><td><strong>Logseq</strong></td><td>大纲式 Markdown，块引用</td><td>块级双向链接，极细</td><td>块级检索，强</td><td>中高（大纲思维）</td><td>结构化思考、大纲党、卡片笔记</td></tr>
+        <tr><td><strong>Notion</strong></td><td>富文本+数据库，格式最丰富</td><td>有，但偏页面级</td><td>数据库筛选强，全文一般</td><td>低（上手快）</td><td>团队协作、项目管理、资料库</td></tr>
+        <tr><td><strong>Roam Research</strong></td><td>大纲+每日笔记</td><td>开创者级，块链接</td><td>双向引用检索，强</td><td>高（贵+重）</td><td>重度研究者、网状笔记玩家</td></tr>
+        <tr><td><strong>语雀 / 飞书文档</strong></td><td>富文本+结构化，中文体验好</td><td>较弱（靠目录/引用）</td><td>全文+团队搜索，中</td><td>低（中文友好）</td><td>中文团队协作文档、知识库</td></tr>
+        <tr><td><strong>Evernote</strong></td><td>富文本+剪藏，老牌</td><td>弱（无真正双链）</td><td>全文+OCR，中强</td><td>低（经典易用）</td><td>网页剪藏、资料归档、轻量收集</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout tip">
+      <strong>选型建议：</strong>① 想要个人「第二大脑」+ 本地掌控 → <strong>Obsidian</strong>；② 重度结构化/大纲思维 → <strong>Logseq</strong>；③ 要团队协作和项目管理 → <strong>Notion / 语雀</strong>；④ 主要做网页剪藏 → <strong>Evernote</strong>。记住：先定方法（本文前三节），再用工具装方法，顺序反过来必翻车。
+    </div>
+  </section>
+
+  <section id="plan">
+    <h2 class="section-title">五、30 天知识管理养成计划</h2>
+    <p>习惯不是靠意志力，靠的是「小到不可能失败」的 daily 动作。下面按周划分阶段，每天只列 1–2 个具体任务，跟着做即可。</p>
+
+    <h3>第 1 周 · 搭建框架（让系统存在）</h3>
+    <div class="card">
+      <ul>
+        <li><strong>Day 1</strong> 选定一款工具并建好顶层目录：<code>00-Inbox / 01-Projects / 02-Areas / 03-Resources / 04-Archives</code>。</li>
+        <li><strong>Day 2</strong> 在 Areas 下写出你负责的 3–5 个长期领域（职业、健康、财务…）。</li>
+        <li><strong>Day 3</strong> 在 Projects 下列出当前在做的所有项目（带截止日期）。</li>
+        <li><strong>Day 4</strong> 建立「信息源白名单」：列出 10–15 个高质量来源。</li>
+        <li><strong>Day 5</strong> 设定每日收藏配额（如 3 条），写进工具或便签。</li>
+        <li><strong>Day 6</strong> 设计你的笔记模板：摘录 / 转述 / 关联 三段式。</li>
+        <li><strong>Day 7</strong> 周复盘：用第三节模板填第一份，检查目录是否清晰。</li>
+      </ul>
+    </div>
+
+    <h3>第 2 周 · 建立输入习惯（只进对的信息）</h3>
+    <div class="card">
+      <ul>
+        <li><strong>Day 8</strong> 所有想收藏的信息统一丢进 <code>00-Inbox</code>，禁止分散存放。</li>
+        <li><strong>Day 9</strong> 用「30 秒判断法」处理收件箱，体验配额带来的取舍。</li>
+        <li><strong>Day 10</strong> 退订 / 取关 3 个低价值信息源。</li>
+        <li><strong>Day 11</strong> 给一条信息做完整「转述」练习（用自己的话重写）。</li>
+        <li><strong>Day 12</strong> 把昨天转述的笔记连接到 1 条已有笔记（建第一条双链）。</li>
+        <li><strong>Day 13</strong> 清理订阅：复查白名单，标记下月要评估的来源。</li>
+        <li><strong>Day 14</strong> 周复盘：统计「处理率」，目标 ≥ 70%。</li>
+      </ul>
+    </div>
+
+    <h3>第 3 周 · 深化处理流程（让笔记长脑子）</h3>
+    <div class="card">
+      <ul>
+        <li><strong>Day 15</strong> 把本周所有摘录推进到「转述」层，不允许只存原文。</li>
+        <li><strong>Day 16</strong> 主动做一次「关联冲刺」：为 5 条旧笔记各找 1 个连接。</li>
+        <li><strong>Day 17</strong> 建立一条「主笔记」（汇总某主题的多条洞见）。</li>
+        <li><strong>Day 18</strong> 练习「三问」质量检查，回改一条不合格的笔记。</li>
+        <li><strong>Day 19</strong> 做一次 PARA 迁移：把 Resources 里被项目需要的笔记复制进 Projects。</li>
+        <li><strong>Day 20</strong> 归档 1 个已完成 / 暂停的项目到 Archives。</li>
+        <li><strong>Day 21</strong> 周复盘：重点写「知识关联发现」，看网络是否变密。</li>
+      </ul>
+    </div>
+
+    <h3>第 4 周 · 启动输出（让飞轮转起来）</h3>
+    <div class="card">
+      <ul>
+        <li><strong>Day 22</strong> 选一个主题，用「笔记拼图法」把所有相关笔记拖成大纲。</li>
+        <li><strong>Day 23</strong> 基于大纲写出第一版产出（短文 / 方案 / 分享稿）。</li>
+        <li><strong>Day 24</strong> 发布或分享它，并收集一条反馈。</li>
+        <li><strong>Day 25</strong> 把产出回链进知识库，作为新输入。</li>
+        <li><strong>Day 26</strong> 建立你的「产出模板」（文章 / 方案各一），固定结构。</li>
+        <li><strong>Day 27</strong> 把产出节奏写进日历（如双周一篇）。</li>
+        <li><strong>Day 28</strong> 周复盘：必须填「输出成果」，验证飞轮已启动。</li>
+        <li><strong>Day 29</strong> 月度回顾：对比 Day 1 和现在的知识库，记录变化。</li>
+        <li><strong>Day 30</strong> 写下「我接下来 30 天要保留的 3 个习惯」，固化成长期节奏。</li>
+      </ul>
+    </div>
+
+    <div class="callout tip">
+      <strong>30 天后的状态：</strong>你不再「收藏即完成」，而是拥有了一条会自己增值的知识流水线——信息进来被筛、被消化、被连接，最终变成你对外产出的成果，而成果又反哺输入。这就是从「信息囤积者」到「知识创造者」的分界线。
+    </div>
+  </section>
+
+  <footer>
+    个人知识管理体系搭建指南 · 方法可适配任意工具　|　核心原则：少收藏、多转述、强连接、必产出
+  </footer>
+
+</div>
+</body>
+</html>

@@ -11,24 +11,14 @@
             "id": "3f2abaf661d1c0e7",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "split-diff-view",
               "state": {
-                "file": "python/Python 运算符  菜鸟教程.md",
-                "mode": "source",
-                "source": false
+                "aFile": ".obsidian/plugins/obsidian-git/data.json",
+                "bFile": ".obsidian/plugins/obsidian-git/data.json",
+                "aRef": ""
               },
-              "icon": "lucide-file",
-              "title": "Python 运算符  菜鸟教程"
-            }
-          },
-          {
-            "id": "6e51575e13713ca3",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "新标签页"
+              "icon": "diff",
+              "title": "Diff: data.json  (Working Tree)"
             }
           }
         ],
@@ -161,8 +151,8 @@
             "state": {
               "type": "copilot-chat-view",
               "state": {},
-              "icon": "message-square",
-              "title": "Copilot"
+              "icon": "lucide-ghost",
+              "title": "copilot-chat-view"
             }
           },
           {
@@ -224,14 +214,13 @@
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
       "bases:新建数据库": false,
-      "obsidian-excalidraw-plugin:新建绘图文件": false,
       "obsidian-textgenerator-plugin:Generate Text!": false,
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
       "copilot:Open Copilot Chat": false,
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "1a4cbb9254f9fb79",
+  "active": "3f2abaf661d1c0e7",
   "lastOpenFiles": [
     "python/Python 运算符  菜鸟教程.md",
     "copilot/copilot-conversations/Ending_Conversation_Now@20260712_215918.md",
