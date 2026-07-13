@@ -1,0 +1,27 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# Obsidian local / device-specific state
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache/
+.trash/
+conflict-files-obsidian-git.md
+
+# Plugin caches, indexes, and backups
+.obsidian/copilot-index-*.json
+.obsidian/**/*.bak
+.obsidian/**/*.bak-*
+*.bak
+*.bak-*
+
+# Copilot chat history (noisy; regenerate locally)
+copilot/copilot-conversations/
+
+# Plugin configs that may contain API keys / local secrets
+.obsidian/plugins/*/data.json
+.obsidian/plugins/*/.git_credentials_input
+.obsidian/plugins/*/.git_credentials_input.response
