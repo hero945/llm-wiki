@@ -1,0 +1,400 @@
+<title>M11 章节证据支撑脑图</title>
+
+<style>
+:root {
+  --bg: #f7f9fa;
+  --surface: #ffffff;
+  --text: #1a2332;
+  --text-muted: #5a6a7d;
+  --border: #d8e0e6;
+  --accent: #0d9488;
+  --accent-light: #ccfbf1;
+  --support: #0ea5e9;
+  --support-light: #e0f2fe;
+  --gap: #f97316;
+  --gap-light: #ffedd5;
+  --neutral: #94a3b8;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --text: #f1f5f9;
+    --text-muted: #94a3b8;
+    --border: #334155;
+    --accent: #2dd4bf;
+    --accent-light: #134e4a;
+    --support: #38bdf8;
+    --support-light: #0c4a6e;
+    --gap: #fb923c;
+    --gap-light: #7c2d12;
+    --neutral: #64748b;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --text: #f1f5f9;
+  --text-muted: #94a3b8;
+  --border: #334155;
+  --accent: #2dd4bf;
+  --accent-light: #134e4a;
+  --support: #38bdf8;
+  --support-light: #0c4a6e;
+  --gap: #fb923c;
+  --gap-light: #7c2d12;
+  --neutral: #64748b;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 12px;
+  letter-spacing: -0.02em;
+}
+
+header p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.card h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot.direct { background: var(--accent); }
+.dot.partial { background: var(--support); }
+.dot.gap { background: var(--gap); }
+
+.mermaid {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+th, td {
+  text-align: left;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+th {
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.badge.direct {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
+.badge.partial {
+  background: var(--support-light);
+  color: var(--support);
+}
+
+.badge.gap {
+  background: var(--gap-light);
+  color: var(--gap);
+}
+
+.section-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.note {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.footer-note {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 640px) {
+  .container { padding: 24px 16px; }
+  header h1 { font-size: 1.6rem; }
+  .card { padding: 20px; }
+}
+</style>
+
+<div class="container">
+  <header>
+    <h1>M11 模板 14 章：摘要证据支撑脑图</h1>
+    <p>基于示例方案摘要，分析各章节能否直接从摘要支撑、存在的缺口及补充路径</p>
+  </header>
+
+  <div class="card">
+    <div class="legend">
+      <div class="legend-item"><span class="dot direct"></span> 可直接支撑</div>
+      <div class="legend-item"><span class="dot partial"></span> 部分支撑，需少量补充</div>
+      <div class="legend-item"><span class="dot gap"></span> 摘要不足，需外部资料/推断</div>
+    </div>
+
+    <div class="mermaid">
+    mindmap
+      root((M11 模板\n14 章))
+        可直接支撑
+          第1章 方案概要
+            标题/分期/适应症
+            目的/设计/人群
+            干预/样本量
+          第3章 目的和估计目标
+            主要/次要目的
+            主要/次要终点
+            估计目标可推断
+          第4章 试验设计
+            设计类型/盲法/对照
+            随机化/样本量/持续时间
+            设计依据不足
+          第5章 试验人群
+            诊断/入排标准
+            年龄/性别
+            避孕/生活方式不足
+          第6章 试验干预
+            药物/剂量/途径
+            给药频率/疗程
+            制备/储存/依从性不足
+          第8章 试验评估和程序
+            终点定义
+            评估工具/时间点
+            完整 SoA 不足
+          第10章 统计考虑
+            α / 把握度
+            主要分析方法
+            样本量依据不足
+          第11章 试验监督
+            伦理/IRB
+            知情同意
+            DMC 信息
+        需外部资料支撑
+          第2章 引言
+            疾病流行病学
+            标准治疗
+            药物作用机制
+            详细风险获益
+            来源：IB/文献
+          第7章 终止/退出
+            停药标准
+            退出标准
+            失访管理
+            来源：医学常识/SOP
+          第9章 安全性事件
+            AE/SAE 定义
+            报告流程
+            妊娠处理
+            来源：IB/安全性数据
+          第12章 支持性细节
+            实验室检查
+            国家/地区差异
+            来源：外部资料
+          第13章 术语和缩略语
+            全文术语汇总
+            来源：正文+术语库
+          第14章 参考文献
+            科学/法规依据
+            来源：文献/IB
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>反向验证：示例摘要内容对照</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>章节</th>
+            <th>支撑状态</th>
+            <th>摘要中有什么</th>
+            <th>摘要中缺什么</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="section-title">第1章 方案概要</div></td>
+            <td><span class="badge direct">可直接支撑</span></td>
+            <td>完整标题、短标题、分期、适应症、设计类型、盲法、对照、样本量、干预方案、主要目的/终点</td>
+            <td class="note">示意图细节、完整 SoA</td>
+          </tr>
+          <tr>
+            <td><div class="section-title">第2章 引言</div></td>
+            <td><span class="badge gap">需外部资料</span></td>
+            <td class="note">仅有高层次目的，无详细背景</td>
+            <td>疾病流行病学、标准治疗、药物机制、非临床/既往临床数据、详细获益风险评估</td>
+          </tr>
+          <tr>
+            <td><div class="section-title">第3章 目的和估计目标</div></td>
+            <td><span class="badge direct">可直接支撑</span></td>
+            <td>主要/次要/探索性目的、主要/次要终点</td>
+            <td class="note">伴发事件策略、群体水平汇总的显式描述</td>
+          </tr>
+          <tr>
+            <td><div class="section-title">第4章 试验设计</div></td>
+            <td><span class="badge partial">部分支撑</span></td>
+            <td>设计类型、随机化、盲法、对照、样本量、持续时间</td>
+            <td>设计依据、随机化方法细节、期中分析、揭盲规则</td>
+          </tr>
+          <tr>
+            <td><div class="section-title">第5章 试验人群</div></td>
+            <td><span class="badge partial">部分支撑</span></td>
+            <td>诊断、年龄、性别、关键入排标准</td>
+            <td>避孕要求、生活方式限制、筛选失败/重新筛选规则</td>
+          </tr>
+          <tr>
+            <td><div class="section-title">第6章 试验干预</div></td>
+            <td><span class="badge partial">部分支撑</span></td>
+            <td>药物、剂量、给药途径、频率、疗程</td>
+            <td>剂型、规格、储存条件、剂量调整、依从性、合并用药规则</td>
+          </tr>
+          <tr>
+            <td><div class="section-title">第7章 终止/退出</div></td>
+            <td><span class="badge gap">需外部资料</span></td>
+            <td class="note">无直接描述</td>
+            <td>永久/暂时停药标准、退出标准、失访管理、再激发规则</td>
+          </tr>
+          <tr>
+            <td><div class="section-title">第8章 试验评估和程序</div></td>
+            <td><span class="badge partial">部分支撑</span></td>
+            <td>终点定义、评估工具、部分时间点</td>
+            <td>完整活动时间表、筛选/基线评估详细列表、所有访视程序</td>
+          </tr>
+          <tr>
+            <td><div class="section-title">第9章 安全性事件</div></td>
+            <td><span class="badge gap">需外部资料</span></td>
+            <td class="note">仅有"收集不良事件"等概括描述</td>
+            <td>AE/SAE 定义、报告时间窗、妊娠处理、特别关注的不良事件</td>
+          </tr>
+          <tr>
+            <td><div class="section-title">第10章 统计考虑</div></td>
+            <td><span class="badge partial">部分支撑</span></td>
+            <td>α、把握度、主要分析方法、缺失数据处理</td>
+            <td>分析集定义、样本量计算依据、多重性调整细节</td>
+          </tr>
+          <tr>
+            <td><div class="section-title">第11章 试验监督</div></td>
+            <td><span class="badge partial">部分支撑</span></td>
+            <td>伦理委员会、知情同意、DMC</td>
+            <td>数据管理、源数据、方案偏离、研究中心关闭等运营细节</td>
+          </tr>
+          <tr>
+            <td><div class="section-title">第12-14章 附录</div></td>
+            <td><span class="badge gap">需外部资料</span></td>
+            <td class="note">摘要本身不包含附录内容</td>
+            <td>实验室检查、国家差异、术语表、参考文献</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer-note">
+      <strong>结论</strong>：示例摘要能直接支撑约 60-70% 的方案结构性内容，但引言、终止/退出规则、安全性细节、附录等需要外部资料或交互补充。产品设计上应明确"初稿"边界，对缺失内容保留占位符而非编造。
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'base', themeVariables: {
+    primaryColor: '#ccfbf1',
+    primaryTextColor: '#0f172a',
+    primaryBorderColor: '#0d9488',
+    lineColor: '#64748b',
+    secondaryColor: '#e0f2fe',
+    tertiaryColor: '#ffedd5',
+    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif'
+  }});
+</script>

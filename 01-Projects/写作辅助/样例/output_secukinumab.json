@@ -1,0 +1,162 @@
+{
+  "trial_identification": {
+    "full_title": "一项评价 Secukinumab 治疗中重度慢性斑块型银屑病患者的有效性、安全性及最佳给药方案的随机、双盲、安慰剂对照、多中心 II 期临床研究",
+    "short_title": "Secukinumab 治疗中重度斑块型银屑病的 II 期研究",
+    "protocol_number": "NCT00941031",
+    "indication": "中重度慢性斑块型银屑病",
+    "therapeutic_area": "皮肤科"
+  },
+  "objectives": {
+    "primary": [
+      {
+        "description": "评价 Secukinumab 不同给药方案治疗中重度慢性斑块型银屑病患者的有效性，并探索最佳给药方案。",
+        "endpoint": "第 12 周银屑病面积和严重程度指数（PASI）较基线改善 ≥ 75% 的患者比例（PASI 75 应答率）。"
+      }
+    ],
+    "secondary": [
+      {
+        "description": "评价 Secukinumab 的安全性、耐受性、生活质量改善及早期疗效。",
+        "endpoint": "见次要终点"
+      }
+    ]
+  },
+  "design": {
+    "study_type": "干预性",
+    "design_pattern": "平行组",
+    "blinding": "双盲",
+    "randomization": {
+      "yes_no": true,
+      "method": null,
+      "stratification": []
+    },
+    "control_type": "安慰剂",
+    "number_of_arms": 3,
+    "sample_size": {
+      "total": 250
+    },
+    "duration": {
+      "treatment": "12 周"
+    }
+  },
+  "population": {
+    "diagnosis": "中重度慢性斑块型银屑病",
+    "gender": "男女不限",
+    "key_inclusion_criteria": [
+      "签署知情同意书时年龄 ≥ 18 周岁",
+      "诊断为慢性斑块型银屑病 ≥ 6 个月",
+      "基线 PASI 评分 ≥ 12 分",
+      "医师整体评估（IGA）评分 ≥ 3 分",
+      "受影响的体表面积（BSA）≥ 10%"
+    ],
+    "key_exclusion_criteria": [
+      "既往接受过 IL-17 抑制剂治疗",
+      "患有脓疱型、红皮病型或点滴型银屑病",
+      "存在活动性感染或严重免疫功能低下",
+      "既往有结核病史或活动性结核"
+    ]
+  },
+  "interventions": [
+    {
+      "name": "Secukinumab",
+      "type": "试验药物",
+      "dosage": "150 mg",
+      "route": "皮下注射",
+      "frequency": "单次",
+      "duration": "单次给药"
+    },
+    {
+      "name": "Secukinumab",
+      "type": "试验药物",
+      "dosage": "150 mg",
+      "route": "皮下注射",
+      "frequency": "未识别",
+      "duration": "未识别"
+    },
+    {
+      "name": "Secukinumab",
+      "type": "试验药物",
+      "dosage": "150 mg",
+      "route": "皮下注射",
+      "frequency": "每月一次",
+      "duration": "未识别"
+    },
+    {
+      "name": "安慰剂",
+      "type": "安慰剂",
+      "dosage": "不适用",
+      "route": "皮下注射",
+      "frequency": "未识别",
+      "duration": "未识别"
+    }
+  ],
+  "endpoints": {
+    "primary": [
+      {
+        "name": "第 12 周银屑病面积和严重程度指数（PASI）较基线改善 ≥ 75% 的患者比例（PASI 75 应答率）。",
+        "timepoint": "第 12 周",
+        "assessment": "银屑病面积和严重程度指数"
+      }
+    ],
+    "secondary": [
+      {
+        "name": "第 12 周 PASI 90 应答率",
+        "timepoint": "第 12 周",
+        "assessment": "银屑病面积和严重程度指数"
+      },
+      {
+        "name": "第 12 周静态医师整体评估（IGA）评分为 0 或 1 的患者比例",
+        "timepoint": "第 12 周",
+        "assessment": null
+      },
+      {
+        "name": "第 12 周皮肤病生活质量指数（DLQI）较基线的变化",
+        "timepoint": "第 12 周",
+        "assessment": "皮肤病生活质量指数"
+      },
+      {
+        "name": "第 2 周 PASI 75 应答率（早期疗效）",
+        "timepoint": "第 2 周",
+        "assessment": "银屑病面积和严重程度指数"
+      },
+      {
+        "name": "不良事件发生率",
+        "timepoint": null,
+        "assessment": null
+      },
+      {
+        "name": "严重不良事件发生率",
+        "timepoint": null,
+        "assessment": null
+      }
+    ]
+  },
+  "statistics": {
+    "alpha": 0.05,
+    "power": 0.9,
+    "primary_analysis_method": "Cochran-Mantel-Haenszel 检验比较 Secukinumab 各组与安慰剂组的 PASI 75 应答率",
+    "missing_data_handling": "末次观测值结转法（LOCF）处理"
+  },
+  "schedule": {
+    "key_assessments": [
+      {
+        "assessment": "静态医师整体",
+        "timepoints": [
+          "第 12 周"
+        ]
+      }
+    ]
+  },
+  "safety": {
+    "ae_collection_period": "研究期间全程收集不良事件"
+  },
+  "ethics_regulatory": {
+    "irb_iec_required": true,
+    "informed_consent_required": true
+  },
+  "extraction_meta": {
+    "source": "synopsis_secukinumab_psoriasis.txt",
+    "extraction_method": "rule_based",
+    "extraction_date": "2026-08-13T16:18:31.754617",
+    "issues": []
+  }
+}

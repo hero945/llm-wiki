@@ -10,7 +10,8 @@
 - AI 工具与本地模型
   - [[ai学习/README|AI 学习]]
 - 工作经验
-  - [[途虎养车/README|途虎养车]]
+  - 当前工作：见 [[01-Projects/README|01-Projects]]（华东医药主线 / 子线）
+  - 前公司已归档：[[04-Archives/途虎养车/README|途虎养车]]
 
 ## 使用规则
 

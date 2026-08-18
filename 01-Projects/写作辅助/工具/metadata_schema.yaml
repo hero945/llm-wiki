@@ -1,0 +1,270 @@
+# ICH M11 方案摘要元数据 Schema
+# 用于从方案摘要、IB、历史方案中提取结构化事实
+
+protocol_metadata:
+  # 1. 试验标识信息
+  trial_identification:
+    full_title:
+      type: string
+      required: true
+      description: 完整标题
+    short_title:
+      type: string
+      required: false
+      description: 短标题/通俗标题
+    protocol_number:
+      type: string
+      required: false
+      description: 申办者方案编号
+    phase:
+      type: string
+      required: true
+      enum: [I, II, III, IV, I/II, II/III, 其他]
+      description: 试验分期
+    indication:
+      type: string
+      required: true
+      description: 适应症/疾病诊断
+    therapeutic_area:
+      type: string
+      required: false
+      description: 治疗领域
+
+  # 2. 试验目的
+  objectives:
+    primary:
+      type: array
+      required: true
+      items:
+        type: object
+        properties:
+          description: {type: string, required: true}
+          endpoint: {type: string, required: true}
+          population: {type: string, required: false}
+          treatment: {type: string, required: false}
+          summary_measure: {type: string, required: false}
+          intercurrent_events: {type: array, required: false}
+    secondary:
+      type: array
+      required: false
+      items:
+        type: object
+        properties:
+          description: {type: string, required: true}
+          endpoint: {type: string, required: true}
+    exploratory:
+      type: array
+      required: false
+      items:
+        type: object
+        properties:
+          description: {type: string, required: true}
+          endpoint: {type: string, required: false}
+
+  # 3. 试验设计
+  design:
+    study_type:
+      type: string
+      required: true
+      enum: [干预性, 观察性, 其他]
+      description: 研究类型
+    design_pattern:
+      type: string
+      required: true
+      enum: [平行组, 交叉设计, 析因设计, 单组, 序贯, 适应性设计, 主方案, 其他]
+      description: 设计模式
+    blinding:
+      type: string
+      required: true
+      enum: [双盲, 单盲, 开放, 三盲]
+      description: 盲法
+    randomization:
+      type: object
+      required: true
+      properties:
+        yes_no: {type: boolean, required: true}
+        method: {type: string, required: false}
+        stratification: {type: array, required: false}
+    control_type:
+      type: string
+      required: true
+      enum: [安慰剂, 阳性对照, 低剂量对照, 标准治疗, 外部对照, 无对照, 其他]
+      description: 对照类型
+    number_of_arms:
+      type: integer
+      required: true
+      description: 组数
+    sample_size:
+      type: object
+      required: true
+      properties:
+        total: {type: integer, required: true}
+        per_arm: {type: array, required: false}
+        randomized: {type: integer, required: false}
+    duration:
+      type: object
+      required: false
+      properties:
+        screening: {type: string, required: false}
+        treatment: {type: string, required: false}
+        follow_up: {type: string, required: false}
+        total_per_participant: {type: string, required: false}
+
+  # 4. 试验人群
+  population:
+    diagnosis:
+      type: string
+      required: true
+      description: 诊断
+    age_range:
+      type: object
+      required: true
+      properties:
+        min: {type: integer, required: false}
+        max: {type: integer, required: false}
+        unit: {type: string, required: true, enum: [岁, 月, 周, 日]}
+    gender:
+      type: string
+      required: false
+      enum: [男性, 女性, 男女不限]
+    key_inclusion_criteria:
+      type: array
+      required: true
+      items: {type: string}
+    key_exclusion_criteria:
+      type: array
+      required: true
+      items: {type: string}
+    special_populations:
+      type: array
+      required: false
+      items: {type: string}
+
+  # 5. 试验干预
+  interventions:
+    type: array
+    required: true
+    items:
+      type: object
+      properties:
+        name: {type: string, required: true}
+        type: {type: string, required: true, enum: [试验药物, 安慰剂, 阳性对照, 基础治疗, 补救治疗, 其他]}
+        dosage: {type: string, required: false}
+        route: {type: string, required: false}
+        frequency: {type: string, required: false}
+        duration: {type: string, required: false}
+        formulation: {type: string, required: false}
+
+  # 6. 终点
+  endpoints:
+    primary:
+      type: array
+      required: true
+      items:
+        type: object
+        properties:
+          name: {type: string, required: true}
+          timepoint: {type: string, required: false}
+          assessment: {type: string, required: false}
+    secondary:
+      type: array
+      required: false
+      items:
+        type: object
+        properties:
+          name: {type: string, required: true}
+          timepoint: {type: string, required: false}
+          assessment: {type: string, required: false}
+
+  # 7. 统计考虑
+  statistics:
+    alpha:
+      type: number
+      required: false
+      description: 显著性水平
+    power:
+      type: number
+      required: false
+      description: 把握度
+    primary_analysis_method:
+      type: string
+      required: false
+      description: 主要分析方法
+    missing_data_handling:
+      type: string
+      required: false
+      description: 缺失数据处理
+    multiplicity_adjustment:
+      type: string
+      required: false
+      description: 多重性调整
+
+  # 8. 时间与访视
+  schedule:
+    screening_visits:
+      type: integer
+      required: false
+    treatment_visits:
+      type: integer
+      required: false
+    follow_up_visits:
+      type: integer
+      required: false
+    key_assessments:
+      type: array
+      required: false
+      items:
+        type: object
+        properties:
+          assessment: {type: string, required: true}
+          timepoints: {type: array, required: true}
+
+  # 9. 安全性
+  safety:
+    ae_collection_period:
+      type: string
+      required: false
+    sae_reporting_rules:
+      type: string
+      required: false
+    special_aes:
+      type: array
+      required: false
+      items: {type: string}
+
+  # 10. 伦理与监管
+  ethics_regulatory:
+    irb_iec_required:
+      type: boolean
+      required: false
+    informed_consent_required:
+      type: boolean
+      required: false
+    data_monitoring_committee:
+      type: boolean
+      required: false
+
+  # 11. 元信息
+  extraction_meta:
+    source:
+      type: string
+      required: true
+      description: 来源文档路径
+    extraction_method:
+      type: string
+      required: true
+      enum: [rule_based, llm, hybrid]
+      description: 提取方法
+    confidence:
+      type: object
+      required: false
+      description: 各字段提取置信度
+    extraction_date:
+      type: string
+      required: true
+      format: date-time
+      description: 提取时间
+    issues:
+      type: array
+      required: false
+      description: 提取过程中发现的问题或不确定项

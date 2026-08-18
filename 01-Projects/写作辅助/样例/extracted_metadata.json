@@ -1,0 +1,164 @@
+{
+  "trial_identification": {
+    "full_title": "一项评价 X 药在中重度斑块型银屑病患者中的有效性、安全性及药代动力学特征的随机、双盲、安慰剂对照、多中心 II 期临床研究",
+    "short_title": "X 药治疗中重度斑块型银屑病的 II 期研究",
+    "protocol_number": "X-PSO-2026-001",
+    "indication": "中重度斑块型银屑病",
+    "therapeutic_area": "皮肤科"
+  },
+  "objectives": {
+    "primary": [
+      {
+        "description": "评价 X 药 60 mg 和 120 mg 两个剂量组治疗中重度斑块型银屑病患者的有效性。",
+        "endpoint": "第 16 周银屑病面积和严重程度指数（PASI）较基线改善 ≥ 75% 的患者比例（PASI 75 应答率）。"
+      }
+    ],
+    "secondary": [
+      {
+        "description": "评价 X 药的安全性、耐受性及药代动力学特征。",
+        "endpoint": "见次要终点"
+      }
+    ],
+    "exploratory": [
+      {
+        "description": "探索 X 药的免疫原性特征及潜在生物标志物。"
+      }
+    ]
+  },
+  "design": {
+    "study_type": "干预性",
+    "design_pattern": "平行组",
+    "blinding": "双盲",
+    "randomization": {
+      "yes_no": true,
+      "method": null,
+      "stratification": []
+    },
+    "control_type": "安慰剂",
+    "number_of_arms": 3,
+    "sample_size": {
+      "total": 180
+    },
+    "duration": {
+      "screening": "最长 4 周",
+      "treatment": "16 周",
+      "follow_up": "8 周",
+      "total_per_participant": "最长 28 周"
+    }
+  },
+  "population": {
+    "diagnosis": "中重度斑块型银屑病",
+    "age_range": {
+      "min": 18,
+      "max": 75,
+      "unit": "岁"
+    },
+    "gender": "男女不限",
+    "key_inclusion_criteria": [
+      "签署知情同意书时年龄 ≥ 18 周岁且 ≤ 75 周岁",
+      "诊断为斑块型银屑病 ≥ 6 个月",
+      "基线 PASI 评分 ≥ 12 分",
+      "sPGA 评分 ≥ 3 分",
+      "受影响的体表面积（BSA）≥ 10%"
+    ],
+    "key_exclusion_criteria": [
+      "既往接受过 X 药或同类生物制剂治疗",
+      "患有脓疱型、红皮病型或点滴型银屑病",
+      "存在活动性感染或严重免疫功能低下",
+      "肝肾功能严重异常"
+    ]
+  },
+  "interventions": [
+    {
+      "name": "X 药",
+      "type": "试验药物",
+      "dosage": "60 mg",
+      "route": "皮下注射",
+      "frequency": "每 2 周一次",
+      "duration": "共 16 周"
+    },
+    {
+      "name": "X 药",
+      "type": "试验药物",
+      "dosage": "120 mg",
+      "route": "皮下注射",
+      "frequency": "每 2 周一次",
+      "duration": "共 16 周"
+    },
+    {
+      "name": "安慰剂",
+      "type": "安慰剂",
+      "dosage": "不适用",
+      "route": "皮下注射",
+      "frequency": "每 2 周一次",
+      "duration": "共 16 周"
+    }
+  ],
+  "endpoints": {
+    "primary": [
+      {
+        "name": "第 16 周银屑病面积和严重程度指数（PASI）较基线改善 ≥ 75% 的患者比例（PASI 75 应答率）。",
+        "timepoint": "第 16 周",
+        "assessment": "银屑病面积和严重程度指数"
+      }
+    ],
+    "secondary": [
+      {
+        "name": "第 16 周 PASI 90 应答率",
+        "timepoint": "第 16 周",
+        "assessment": "银屑病面积和严重程度指数"
+      },
+      {
+        "name": "第 16 周静态医师整体评估（sPGA）评分为 0 或 1 的患者比例",
+        "timepoint": "第 16 周",
+        "assessment": "静态医师整体评估"
+      },
+      {
+        "name": "第 16 周银屑病生活质量指数（DLQI）较基线的变化",
+        "timepoint": "第 16 周",
+        "assessment": "皮肤病生活质量指数"
+      },
+      {
+        "name": "不良事件发生率",
+        "timepoint": null,
+        "assessment": null
+      },
+      {
+        "name": "严重不良事件发生率",
+        "timepoint": null,
+        "assessment": null
+      }
+    ]
+  },
+  "statistics": {
+    "alpha": 0.05,
+    "power": 0.8,
+    "primary_analysis_method": "Cochran-Mantel-Haenszel 检验比较 X 药各剂量组与安慰剂组的 PASI 75 应答率，按随机化分层因素校正",
+    "missing_data_handling": "多重插补法处理"
+  },
+  "schedule": {
+    "key_assessments": [
+      {
+        "assessment": "静态医师整体",
+        "timepoints": [
+          "第 16 周"
+        ]
+      }
+    ]
+  },
+  "safety": {
+    "data_monitoring_committee": true,
+    "ae_collection_period": "研究期间全程收集不良事件"
+  },
+  "ethics_regulatory": {
+    "irb_iec_required": true,
+    "informed_consent_required": true,
+    "data_monitoring_committee": true
+  },
+  "extraction_meta": {
+    "source": "example_synopsis.txt",
+    "extraction_method": "rule_based",
+    "extraction_date": "2026-08-13T16:04:08.843797",
+    "issues": []
+  }
+}

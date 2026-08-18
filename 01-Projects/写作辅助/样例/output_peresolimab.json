@@ -1,0 +1,171 @@
+{
+  "trial_identification": {
+    "full_title": "一项评价 Peresolimab 在经甲氨蝶呤治疗应答不佳的中重度活动性类风湿关节炎患者中的有效性、安全性的随机、双盲、安慰剂对照、多中心 II 期临床研究",
+    "short_title": "Peresolimab 治疗类风湿关节炎的 II 期研究",
+    "protocol_number": "NCT04466910",
+    "indication": "经甲氨蝶呤治疗应答不佳的中重度活动性类风湿关节炎",
+    "therapeutic_area": "风湿免疫"
+  },
+  "objectives": {
+    "primary": [
+      {
+        "description": "评价 Peresolimab 联合甲氨蝶呤治疗经甲氨蝶呤治疗应答不佳的中重度活动性类风湿关节炎患者的有效性。",
+        "endpoint": "第 14 周达到美国风湿病学会 20% 改善标准（ACR20）的患者比例。"
+      }
+    ],
+    "secondary": [
+      {
+        "description": "评价 Peresolimab 的安全性、耐受性及其他疗效指标。",
+        "endpoint": "见次要终点"
+      }
+    ]
+  },
+  "design": {
+    "study_type": "干预性",
+    "design_pattern": "平行组",
+    "blinding": "双盲",
+    "randomization": {
+      "yes_no": true,
+      "method": null,
+      "stratification": [
+        "基线甲氨蝶呤剂量",
+        "地域"
+      ]
+    },
+    "control_type": "安慰剂",
+    "number_of_arms": 3,
+    "sample_size": {
+      "total": 250
+    },
+    "duration": {
+      "screening": "最长 4 周",
+      "treatment": "14 周",
+      "follow_up": "12 周"
+    }
+  },
+  "population": {
+    "diagnosis": "中重度活动性类风湿关节炎",
+    "age_range": {
+      "min": 18,
+      "max": 75,
+      "unit": "岁"
+    },
+    "gender": "男女不限",
+    "key_inclusion_criteria": [
+      "签署知情同意书时年龄 ≥ 18 周岁且 ≤ 75 周岁",
+      "根据美国风湿病学会（ACR）1987 年或 2010 年标准诊断为类风湿关节炎 ≥ 6 个月",
+      "处于中重度活动性疾病状态，基线时肿胀关节数（SJC）≥ 6（66 个关节计数）和压痛关节数（TJC）≥ 8（68 个关节计数）",
+      "基线 CRP ≥ 正常值上限",
+      "正在接受稳定剂量甲氨蝶呤（7.5-25 mg/周）治疗 ≥ 12 周"
+    ],
+    "key_exclusion_criteria": [
+      "既往接受过 PD-1/PD-L1 抑制剂治疗",
+      "患有其他自身免疫性疾病",
+      "存在活动性感染或严重免疫功能低下",
+      "既往有结核病史或活动性结核",
+      "患有恶性肿瘤或近 5 年内有恶性肿瘤病史"
+    ]
+  },
+  "interventions": [
+    {
+      "name": "Peresolimab",
+      "type": "试验药物",
+      "dosage": "700 mg",
+      "route": "静脉输注",
+      "frequency": "未识别",
+      "duration": "未识别"
+    },
+    {
+      "name": "Peresolimab",
+      "type": "试验药物",
+      "dosage": "300 mg",
+      "route": "静脉输注",
+      "frequency": "未识别",
+      "duration": "未识别"
+    },
+    {
+      "name": "安慰剂",
+      "type": "安慰剂",
+      "dosage": "不适用",
+      "route": "静脉输注",
+      "frequency": "未识别",
+      "duration": "未识别"
+    }
+  ],
+  "endpoints": {
+    "primary": [
+      {
+        "name": "第 14 周达到美国风湿病学会 20% 改善标准（ACR20）的患者比例。",
+        "timepoint": "第 14 周",
+        "assessment": null
+      }
+    ],
+    "secondary": [
+      {
+        "name": "第 14 周 ACR50 和 ACR70 应答率",
+        "timepoint": "第 14 周",
+        "assessment": null
+      },
+      {
+        "name": "第 14 周基于 C 反应蛋白计算的 28 个关节疾病活动度评分（DAS28-CRP）较基线的变化",
+        "timepoint": "第 14 周",
+        "assessment": null
+      },
+      {
+        "name": "第 14 周临床疾病活动指数（CDAI）较基线的变化",
+        "timepoint": "第 14 周",
+        "assessment": null
+      },
+      {
+        "name": "第 14 周健康评估问卷残疾指数（HAQ-DI）较基线的变化",
+        "timepoint": "第 14 周",
+        "assessment": null
+      },
+      {
+        "name": "不良事件发生率",
+        "timepoint": null,
+        "assessment": null
+      },
+      {
+        "name": "严重不良事件发生率",
+        "timepoint": null,
+        "assessment": null
+      }
+    ]
+  },
+  "statistics": {
+    "alpha": 0.05,
+    "power": 0.9,
+    "primary_analysis_method": "Cochran-Mantel-Haenszel 检验比较 Peresolimab 各组与安慰剂组的 ACR20 应答率，按基线甲氨蝶呤剂量和地域分层",
+    "missing_data_handling": "末次观测值结转法（LOCF）处理"
+  },
+  "schedule": {
+    "key_assessments": [
+      {
+        "assessment": "基于 C 反应蛋白计算的 28 个关节疾病活动度",
+        "timepoints": [
+          "第 14 周"
+        ]
+      },
+      {
+        "assessment": "健康",
+        "timepoints": [
+          "第 14 周"
+        ]
+      }
+    ]
+  },
+  "safety": {
+    "ae_collection_period": "研究期间全程收集不良事件"
+  },
+  "ethics_regulatory": {
+    "irb_iec_required": true,
+    "informed_consent_required": true
+  },
+  "extraction_meta": {
+    "source": "synopsis_peresolimab_ra.txt",
+    "extraction_method": "rule_based",
+    "extraction_date": "2026-08-13T16:18:32.369598",
+    "issues": []
+  }
+}
