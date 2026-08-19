@@ -584,20 +584,23 @@ sequenceDiagram
 
 ### 3.5 推荐技术栈
 
+> 2026-08-19 起，逐层论证、默认决策与切换触发点以 [[技术选型]] 为准；本节保留概要。
+
 | 层级 | 推荐技术 | 说明 |
 |------|----------|------|
-| 前端 | React / Vue + 飞书/钉钉小程序（可选） | 审阅界面、元数据输入界面 |
-| 后端 | Python + FastAPI | 服务编排 |
-| 文档处理 | `python-docx`, `PyMuPDF`, `Pandoc` | 解析与生成 Word/PDF |
-| 数据存储 | PostgreSQL + 向量数据库 | 元数据、反馈、企业知识 |
+| 前端 | React + TypeScript + Ant Design（SSE 推进度） | 任务式交互；飞书/钉钉通知（可选） |
+| 后端 | Python + FastAPI + 独立 worker | 服务编排；PG jobs 表驱动任务状态机，MVP 不引 Celery/Redis |
+| 文档处理 | `python-docx`, `PyMuPDF`, `docxtpl`, `lxml` | 解析与生成 Word/PDF、修订与批注处理 |
+| 数据存储 | PostgreSQL（JSONB 存元数据）+ 本地盘/MinIO | 向量库延后，需要时先用 pgvector |
 | **Skill 管理** | **YAML/Markdown + Git + Jinja2** | **知识资产版本化管理** |
 | **规则提取** | **正则 + 关键词 + 规则引擎** | **元数据基础结构提取** |
 | **LLM 增强** | **Claude API / OpenAI API / 国产模型 API** | **复杂医学语义理解与规范化** |
+| LLM 网关 | 双泳道（生成旗舰模型 / 提取轻量模型） | 调用全量落库，支撑成本记录与模型替换 |
 | 元数据融合 | Python + JSON Schema | 规则结果与 LLM 补丁合并 |
 | 提示词/模板 | Jinja2 + YAML | Skill 规则渲染和 LLM Prompt 管理 |
 | 一致性检查 | 规则引擎 + LLM 辅助 | 跨章节校验 |
 | 修改痕迹采集 | python-docx 修订模式解析 | 提取人工修改 |
-| 部署 | Docker + 云服务器 / 私有化部署 | 信创/私有化友好 |
+| 部署 | Docker Compose 一体化（web/worker/postgres/minio） | MVP 单包交付，即私有化形态 |
 
 **Skill 管理特别说明**：
 
