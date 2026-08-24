@@ -5,6 +5,14 @@
 ## 当前内容
 
 - [[Obsidian 使用本地 Ollama 模型经验]]
+- [[01-Projects/pi agent 学习/README|pi agent 学习]]：pi coding agent 架构、扩展机制与实践经验
+
+## 资源索引
+
+| 主题 | 状态 | 笔记 |
+|------|------|------|
+| 本地模型部署 | 已沉淀 | [[Obsidian 使用本地 Ollama 模型经验]] |
+| pi coding agent | 进行中 | [[01-Projects/pi agent 学习/README|pi agent 学习]] |
 
 ## 使用方式
 
